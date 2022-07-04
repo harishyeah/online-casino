@@ -46,7 +46,7 @@ export default function Home() {
       field: 'created_at',
       headerName: 'Playing Date',
       sortable: true,
-      type:"datetime",
+      type:"dateTime",
       width: 180,
       editable: false,
       valueGetter: (params: GridValueGetterParams) => new Date(`${params.row.reward}`).toLocaleString()
@@ -59,28 +59,30 @@ export default function Home() {
       editable: false,
       renderCell: (params) => {
         let result:any = []
-          
+            let _key = 0;
             for (let slot of JSON.parse(params.row.slot)) { 
               let html:any = ""
                   if(slot === 0)
                   {
                   
-                  html = <img width={30} alt='' src={image1} /> 
+                  html = <img key={_key} width={30} alt='' src={image1} /> 
                   }
                   else if(slot=== 1)
                   {
-                  html = <img width={30} alt='' src={image2} /> 
+                  html = <img key={_key} width={30} alt='' src={image2} /> 
                   }
                   else if(slot=== 2)
                   {
-                  html = <img width={30} alt='' src={image3} /> 
+                  html = <img key={_key} width={30} alt='' src={image3} /> 
                   }
                   else if(slot=== 3)
                   {
-                  html = <img width={30} alt='' src={image4} /> 
+                  html = <img key={_key} width={30} alt='' src={image4} /> 
                   }
 
                   result.push(html);
+
+                  _key++;
             }
 
             return result
@@ -89,50 +91,52 @@ export default function Home() {
     },
     {
       field: 'fee',
-      headerName: 'Game Fee',
+      headerName: 'Game Fee ( $ )',
       width: 180,
+      sortable: true,
       type:"number",
       editable: false,
-      valueGetter: (params: GridValueGetterParams) => '$ 2'
+      valueGetter: (params: GridValueGetterParams) => 2
     },
     {
       field: 'winning',
       headerName: 'Winning',
       width: 180,
-      type:"number",
+      sortable: true,
       editable: false,
       valueGetter: (params: GridValueGetterParams) => params.row.winning===1?'Yes':'No'
     },
     {
       field: 'reward',
-      headerName: 'Reward',
+      headerName: 'Reward ( $ )',
       width: 180,
+      sortable: true,
       type:"number",
       editable: false,
-      valueGetter: (params: GridValueGetterParams) => `$ ${params.row.reward}`
+      valueGetter: (params: GridValueGetterParams) => params.row.reward
     },
     {
       field: 'remaining_credits',
-      headerName: 'Remaining Credits',
+      headerName: 'Remaining Credits ( $ )',
       sortable: true,
       width: 180,
       type:"number",
       editable: false,
-      valueGetter: (params: GridValueGetterParams) => `$ ${params.row.remaining_credits}`
+      valueGetter: (params: GridValueGetterParams) => params.row.remaining_credits
     },
   ];
 
   useEffect(() => {
 
     async function fetchData() {
-      console.log("enter", userData)
+
       try {
 
         // check user login as guest
         if(isLoggedIn && userData.id === 0)
         {
           let _records = StorageService.getObject("guestUserGameData")
-          console.log("_records", _records)
+
           setGameData(_records);
         }
         
@@ -148,7 +152,6 @@ export default function Home() {
             Alert.error(response.message);
             return false;
           }
-          console.log(response);
           
           setGameData(response.data.data);
 
@@ -184,8 +187,8 @@ export default function Home() {
         <DataGrid
             rows={gameData}
             columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[10]}
+            pageSize={10}
+            rowsPerPageOptions={[5]}
             // checkboxSelection
             // disableSelectionOnClick
         />

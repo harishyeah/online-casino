@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 // @ts-ignore
 import {Alert} from '../../Services/AlertService.tsx'
+import user from '../../Assets/Images/user.jpg'
 // @ts-ignore
 import { logout } from '../../Action/Auth.tsx'
 
@@ -53,7 +54,7 @@ const ProfileMenus = () => {
         <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src={user} />
               </IconButton>
             </Tooltip>
             <Menu

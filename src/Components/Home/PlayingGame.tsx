@@ -45,7 +45,7 @@ export default function PlayingGame({setPlayGame}) {
     const [creditPlaying, setCreditPlaying] = useState(false)
 
     const [cards, setCards] = useState([2,2,2]);
-    const [fruits, setFruits] = useState([image1, image2, image3,image4])
+    const [cardsData, setCardsData] = useState([image1, image2, image3,image4])
 
     
 
@@ -70,8 +70,6 @@ export default function PlayingGame({setPlayGame}) {
                 Alert.error(response.message);
                 return false;
             }
-
-            console.log("user details", response.data);
 
             response.data.token = userData.token
             
@@ -150,8 +148,6 @@ export default function PlayingGame({setPlayGame}) {
             
             setCards(result)
 
-            console.log("result", result);
-
             // check how many pairs of cards
             if(isCountPairs(result, 3) && result[0] === 2)
             {
@@ -203,7 +199,7 @@ export default function PlayingGame({setPlayGame}) {
       let options = ref.children;
 
       let randomOption = Math.floor(
-        Math.random() * fruits.length
+        Math.random() * cardsData.length
       );
 
       if(win)
@@ -292,7 +288,7 @@ export default function PlayingGame({setPlayGame}) {
             <ButtonGroup size="small" aria-label="small button group">
                 <Button 
                     variant="contained"
-                    className="mr-8"
+                    style={{marginRight: '20px'}}
                     onClick={handleplaying}
                     color="success"
                     disabled={playing}
@@ -300,6 +296,7 @@ export default function PlayingGame({setPlayGame}) {
                 </Button>
 
                 <Button 
+                    style={{marginRight: '20px'}}
                     variant="contained"
                     onClick={handleplayingForWin}
                     disabled={creditPlaying}
@@ -318,7 +315,7 @@ export default function PlayingGame({setPlayGame}) {
                     <div className="crads-group">
                     <section className='card'>
                         <div className="card-container" ref={slotRef[0]}>
-                        {fruits.map((fruit, index) => (
+                        {cardsData.map((fruit, index) => (
                             <div key={index}>
                             <span><img width="100%" src={fruit} alt="" /></span>
                             </div>
@@ -329,7 +326,7 @@ export default function PlayingGame({setPlayGame}) {
                     <div className="crads-group">
                     <section className='card'>
                         <div className="card-container" ref={slotRef[1]}>
-                        {fruits.map((fruit, index) => (
+                        {cardsData.map((fruit, index) => (
                             <div key={index}>
                             <span><img width="100%" src={fruit} alt="" /></span>
                             </div>
@@ -340,7 +337,7 @@ export default function PlayingGame({setPlayGame}) {
                     <div className="crads-group">
                     <section className='card'>
                         <div className="card-container" ref={slotRef[2]}>
-                        {fruits.map((fruit, index) => (
+                        {cardsData.map((fruit, index) => (
                             <div key={index}>
                             <span><img width="100%" src={fruit} alt="" /></span>
                             </div>

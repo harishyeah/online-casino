@@ -87,6 +87,8 @@ footer{
   padding: 30px;
   background: #7997b6;
   color: white;
+  position: relative;
+  top: 200px;
 }
 
 .ml-8{

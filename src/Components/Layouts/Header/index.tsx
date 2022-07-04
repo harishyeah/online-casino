@@ -9,7 +9,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 // @ts-ignore
 import ProfileMenus from '../../Common/ProfileMenus.tsx';
 // @ts-ignore
@@ -29,21 +29,6 @@ const Header = () => {
   const { isLoggedIn, userData }:any = useSelector<any>(state => state.auth);
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-
-
-  useEffect(() => {
-
-    try{
-      console.log("userData", isLoggedIn, userData);
-      
-    }
-    catch(err)
-    {
-      setLoading(false)
-      Alert.error(err.message)
-    }
-
-  }, [isLoggedIn])
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);

@@ -36,8 +36,8 @@ export default function Login() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("test@onlinecasino.com");
+  const [password, setPassword] = useState("Admin@123");
 
   const [emailError, setEmailError] = useState(false);
   const [emailErrorMsg, setEmailErrorMsg] = useState("");
@@ -99,7 +99,6 @@ export default function Login() {
         Alert.error(response.message);
         return false;
       }
-      console.log(response);
       
       dispatch(login(response.data));
 
@@ -133,6 +132,8 @@ export default function Login() {
             <Typography id="transition-modal-title" variant="h6" component="h2">
               Login
             </Typography>
+
+            <p>Credential for login: <br/>Email: <b>test@onlinecasino.com</b> <br/> Password: <b>Admin@123</b></p>
             <Box
                 component="form"
                 sx={{
