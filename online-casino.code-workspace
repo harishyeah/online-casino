@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\..\\RWaltz\\sintryx-front-ui"
+		},
+		{
+			"path": "..\\online-casino-api"
+		},
+		{
+			"path": "..\\..\\RWaltz\\sintryx-api"
+		}
+	],
+	"settings": {}
+}
